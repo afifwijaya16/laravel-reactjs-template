@@ -1,21 +1,41 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { PUBLIC_URL } from "../constant";
+// layout
+import Header from "./layout/Header";
+// pages
+import Home from "./pages/Home";
+import Login from "./pages/Auth/Login";
 
-function App() {
+const Layout = ({ children }) => {
     return (
-        <div className="container">
-            <div className="row justify-content-center">
-                <div className="col-md-8">
-                    <div className="card">
-                        <div className="card-header">Example Component</div>
-
-                        <div className="card-body">
-                            I'm an example component!
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <>
+            <Header />
+            {children}
+        </>
     );
-}
+};
+
+const App = () => {
+    return (
+        <>
+            <Router>
+                <Switch>
+                    <Route
+                        path={`${PUBLIC_URL}login`}
+                        exact={true}
+                        component={Login}
+                    />
+
+                    <Route path={`${PUBLIC_URL}`} exact={true}>
+                        <Layout>
+                            <Home />
+                        </Layout>
+                    </Route>
+                </Switch>
+            </Router>
+        </>
+    );
+};
 
 export default App;
