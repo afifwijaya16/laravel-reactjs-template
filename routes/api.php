@@ -22,8 +22,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // auth
-Route::get('auth/create-token', [AuthApiController::class, 'createToken']);
-Route::post('auth/login', [AuthApiController::class, 'login']);
-Route::post('auth/register', [AuthApiController::class, 'register']);
-// category
-Route::apiResource('categories', CategoryController::class);
+Route::group(array('middleware' => ['cors']), function ()
+{
+    Route::get('auth/create-token', [AuthApiController::class, 'createToken']);
+    Route::post('auth/login', [AuthApiController::class, 'login']);
+    Route::post('auth/register', [AuthApiController::class, 'register']);
+    // category
+    Route::apiResource('categories', CategoryController::class);
+});
+
