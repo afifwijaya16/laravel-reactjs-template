@@ -16,6 +16,11 @@ const Header = () => {
                                 Home
                             </Link>
                         </li>
+                        <li className="nav-item active">
+                            <Link to={`${PUBLIC_URL}`} className="nav-link">
+                                Category
+                            </Link>
+                        </li>
                         <li className="nav-item">
                             <Link
                                 to={`${PUBLIC_URL}login`}
